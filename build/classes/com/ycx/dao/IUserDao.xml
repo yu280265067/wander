@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ycx.dao.IUserDao">
+	<!-- <resultMap id="BaseResultMap" type="com.ycx.dao.AcqTradeOrderExtDO"> 
+		<id column="TRADE_VOUCHER_NO" property="tradeVoucherNo" jdbcType="VARCHAR" 
+		/> <result column="PROD_DESC" property="prodDesc" jdbcType="VARCHAR" /> <result 
+		column="PROD_SHOW_URL" property="prodShowUrl" jdbcType="VARCHAR" /> <result 
+		column="PREPAID_AMOUNT" property="prepaidAmount" jdbcType="DECIMAL" /> <result 
+		column="PREPAID_VOUCHER_NO" property="prepaidVoucherNo" jdbcType="VARCHAR" 
+		/> <result column="COIN_AMOUNT" property="coinAmount" jdbcType="DECIMAL" 
+		/> <result column="ENSURE_AMOUNT" property="ensureAmount" jdbcType="DECIMAL" 
+		/> <result column="PAID_AMOUNT" property="paidAmount" jdbcType="DECIMAL" 
+		/> <result column="SETTLED_AMOUNT" property="settledAmount" jdbcType="DECIMAL" 
+		/> <result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" 
+		/> <result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" 
+		/> <result column="REFUND_ENSURE_AMOUNT" property="refundEnsureAmount" jdbcType="DECIMAL" 
+		/> <result column="REFUNDED_SETTLE_AMOUNT" property="refundedSettleAmount" 
+		jdbcType="DECIMAL" /> <result column="REFUNDED_PAY_AMOUNT" property="refundedPayAmount" 
+		jdbcType="DECIMAL" /> </resultMap> -->
+	<select id="getUserById" resultType="com.ycx.model.User"
+		parameterType="com.ycx.model.User">
+		select username from t_user where id IN
+		<foreach item="item" index="index" collection="ids"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<select id="findByIdsMap" resultMap="BaseResultMap">
+		select
+		*
+		from T_ACQ_TRADE_ORDER_EXT where TRADE_VOUCHER_NO in
+		<foreach item="item" index="index" collection="array" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

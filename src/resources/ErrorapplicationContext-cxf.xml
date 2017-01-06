@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://cxf.apache.org/jaxws 
+		http://cxf.apache.org/schemas/jaxws.xsd">
+		
+	 <import resource="classpath:resources/META-INF/cxf/cxf.xml" />
+	<!-- <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
+	<!-- 在jar包中没有找到cxf－extension－soap  和servlet 的xml 文件 就注释掉了 ，
+	不影响运行
+ -->	
+ <!--  光设置bean 不引用 会抱错 不知道为什么   -->
+<!-- <bean id="inMessageInterceptor" class="com.ycx.webservice.CheckUserInterceptor"/> -->
+<bean id="loggingInterceptor" class="com.ycx.webservice.LoggingInterceptor"/>  
+<bean id="outloggingInterceptor" class="com.ycx.webservice.LoggingInterceptorCli"/>  
+<bean id="serviceBean" class="com.ycx.webservice.WebServiceImp"/>
+<!-- 注意下面的address，这里的address的名称就是访问的WebService的name -->
+
+<jaxws:server id="webService" serviceClass="com.ycx.webservice.WebServiceSer" address="/helloTest">
+    <jaxws:serviceBean>
+        <!-- 要暴露的 bean 的引用 -->
+        <ref bean="serviceBean"/>
+    </jaxws:serviceBean>
+    <!-- 由于w3c.dom 中的Element没有settextContent 方法，至今没有解决 暂时先注释 -->
+      <jaxws:inInterceptors>
+       <!--  <ref bean="inMessageInterceptor"/> -->
+         <ref bean="loggingInterceptor"/>
+         <ref bean="outloggingInterceptor"/> 
+    </jaxws:inInterceptors>  
+</jaxws:server>
+
+</beans>

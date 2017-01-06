@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wander_framework02:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="wander_framework02.war">
+      <element id="artifact" artifact-name="wander_framework02:war exploded" />
+    </root>
+  </artifact>
+</component>
