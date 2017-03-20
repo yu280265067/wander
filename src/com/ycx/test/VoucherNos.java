@@ -1,15 +1,22 @@
 package com.ycx.test;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import com.ycx.dubbo.DemoService;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.configuration.ConfigurationBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.reflections.Reflections;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
@@ -89,10 +96,30 @@ public class VoucherNos {
         }
         return 0;
     }
+
+	private  Integer settlementTime;  //结算时间 秒数
+
+	public Integer getSettlementTime() {
+		return settlementTime;
+	}
+
+	public void setSettlementTime(Integer settlementTime) {
+		this.settlementTime = settlementTime;
+	}
+
 	public static void main(String[] args) {
-		ArrayList<String> list = new ArrayList<String>();
-		list.addAll(Collections.emptyList());
-		System.out.println(list.isEmpty());
+		Reflections reflections = new Reflections();
+		Set<Class<? extends DemoService>> subTypes = reflections.getSubTypesOf(DemoService.class);
+		subTypes.forEach(x->{
+			String version = StringUtils.substringAfter(x.getSimpleName(), "Demo").toLowerCase();
+			try {
+				Method valuesMethod = x.getMethod("values");
+				System.out.printf(valuesMethod.getName());
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+			System.out.printf(version);
+		});
 	}
 
 }

@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.ycx.model.User;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class DemoServiceImpl implements DemoService{
 
 	@Override

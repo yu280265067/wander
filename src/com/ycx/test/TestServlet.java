@@ -39,4 +39,11 @@ public class TestServlet extends HttpServlet {
 		doGet(request, response);
 	}
 */
+	public static void main(String[] args) {
+		VoucherNos s = new VoucherNos();
+		s.setSettlementTime(22);
+		System.out.println(s.getSettlementTime());
+		Integer ss = s.getSettlementTime();
+		System.out.println(ss);
+	}
 }

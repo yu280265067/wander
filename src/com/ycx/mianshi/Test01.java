@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class Test01 {
+public class Test01 {/*
 	//fibonacci数列问题
 	public static void fibonacci(int num){
 		int s[] = new int[num];
@@ -107,5 +107,5 @@ public class Test01 {
         permutation(Arrays.asList(datas), new ArrayList()); 
 		String data="aavzcadfdsfsdhshgWasdfasdf";
 		sortMap(data);
-	}
+	}*/
 }

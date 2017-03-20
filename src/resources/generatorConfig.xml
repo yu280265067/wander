@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+    <classPathEntry location="/Users/apple/.m2/repository/mysql/mysql-connector-java/5.1.36/mysql-connector-java-5.1.36.jar"/>
+    <context id="mysql" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test"
+                        userId="root" password="root">
+        </jdbcConnection>
+        
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        
+        <!-- generate Model -->
+        <javaModelGenerator targetPackage="com.ycx.dal.dataobject"
+                            targetProject="./src/main/ycx">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        
+        <!-- generate xml -->
+        <sqlMapGenerator targetPackage="src/resources/META-INF/sqlmap"
+                         targetProject=".">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ycx.dal.daointerface"
+                             targetProject="./src/main/ycx">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!--<table schema="" tableName="pse_router" domainObjectName="PseRouterDo"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true"/>-->
+        <!--<table schema="" tableName="pse_command" domainObjectName="PseCommandDo"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true"/>-->
+        <!--<table schema="" tableName="pse_product" domainObjectName="PseProductDo"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true"/>-->
+        <table schema="" tableName="pse_biz_order_state" domainObjectName="PseBizOrderStateDo"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true"/>
+        <!--<table schema="" tableName="pse_biz_order_state_history" domainObjectName="PseBizOrderStateHistoryDo"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true"/>-->
+        <!--<table schema="" tableName="pse_context" domainObjectName="PseContextDo"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true"/>-->
+    </context>
+</generatorConfiguration>

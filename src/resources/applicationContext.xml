@@ -30,7 +30,7 @@
 	<bean class="com.ycx.configuration.SystemConfig">
 		<property name="locations">
 			<!-- file:${config.root}/app.properties -->
-			<value>file:/Users/yuchengxiang/app.properties</value>
+			<value>file:/Users/apple/app.properties</value>
 		</property>
 	</bean>
 	<bean id="multipartResolver"
@@ -92,7 +92,7 @@
 			value="${jdbc.username}" /> <property name="password" value="${jdbc.password}" 
 			/> -->
 		<property name="url"
-			value="jdbc:mysql://${mysql.url}:3306/test?useUnicode=true&amp;characterEncoding=UTF-8" />
+			value="jdbc:mysql://${mysql.url}:3307/test?useUnicode=true&amp;characterEncoding=UTF-8" />
 		<property name="username" value="${mysql.name}" />
 		<property name="password" value="${mysql.pass}" />
 
@@ -211,7 +211,7 @@
 	<!--</bean>-->
 
 	<!--configure registry center -->
-	 <reg:zookeeper id="regCenter" server-lists="101.200.91.48:2181" namespace="dd-job"
+	 <reg:zookeeper id="regCenter" server-lists="localhost:2181" namespace="dd-job"
 					base-sleep-time-milliseconds="1000" max-sleep-time-milliseconds="3000" max-retries="3" />
 
 	<!--configure job -->
